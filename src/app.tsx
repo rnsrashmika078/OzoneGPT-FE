@@ -4,6 +4,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Sidebar from "./components/ui/sidebar";
 
+/** entry */
+
 export default function App() {
   return (
     <div className="flex gap-2">
