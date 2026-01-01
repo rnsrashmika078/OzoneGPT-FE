@@ -11,8 +11,10 @@ import Validation from "../ui/validation";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import api from "@/lib/axios/axios";
+import { useOzoneStore } from "@/lib/zustand/store";
 
 const SignUpForm = () => {
+    const setAuthUser = useOzoneStore((store) => store.setAuthUser);
     const navigate = useNavigate();
     const {
         register,
@@ -32,6 +34,7 @@ const SignUpForm = () => {
                 theme: "dark",
             });
             if (res.data.success) {
+                setAuthUser(res.data.user);
                 navigate("/");
             }
             reset();

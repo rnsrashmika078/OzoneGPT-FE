@@ -11,7 +11,11 @@ import Validation from "../ui/validation";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import api from "@/lib/axios/axios";
+import { useOzoneStore } from "@/lib/zustand/store";
 const SignInForm = () => {
+  
+
+    const setAuthUser = useOzoneStore((store) => store.setAuthUser);
     const navigate = useNavigate();
     const {
         register,
@@ -32,6 +36,7 @@ const SignInForm = () => {
                 theme: "dark",
             });
             if (res.data.success) {
+                setAuthUser(res.data.user);
                 navigate("/");
             }
 
@@ -54,6 +59,7 @@ const SignInForm = () => {
             animate="visible"
             transition={{ duration: 0.5, ease: "easeInOut" }}
         >
+            {/* <BiUserX color="red" size={25} onClick={() => navigate("/")} /> */}
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="bg-black/20 border  border-gray-900 shadow-md rounded-xl p-5 flex flex-col min-w-[400px]"
